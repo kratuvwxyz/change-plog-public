@@ -7,15 +7,27 @@
     "vscode": "^1.96.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages",
+    "Extension Packs"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "change-plog.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "extension.changelogHelper",
+        "title": "Trigger Changelog Helper"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.changelogHelper",
+        "key": "ctrl+alt+c",
+        "when": "editorLangId == markdown"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

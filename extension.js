@@ -1,36 +1,73 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+let hasRun = false; // Prevents multiple runs
 
-/**
- * @param {vscode.ExtensionContext} context
- */
 function activate(context) {
+    let disposable = vscode.workspace.onDidChangeTextDocument((event) => {
+        if (hasRun) return; // Prevents running again
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "change-plog" is now active!');
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) return;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('change-plog.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+        if (!event.contentChanges || event.contentChanges.length === 0) return;
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Change-PLOG!');
-	});
+        const document = event.document;
+        const position = editor.selection.active;
 
-	context.subscriptions.push(disposable);
+        if (position.line < 0) return;
+
+        const line = document.lineAt(position.line).text.trim();
+        
+        let match = line.match(/^changelog-(major|minor|patch)-(added|changed|fixed|removed|secured)/);
+        if (match) {
+            hasRun = true; // Set flag to prevent multiple runs
+            updateChangelog(editor, document, match[1], match[2], position.line);
+        }
+    });
+
+    context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
+function updateChangelog(editor, document, versionType, changeType, lineNumber) {
+    const text = document.getText();
+    const versionRegex = /## (\d+)\.(\d+)\.(\d+)/g;
+    let match;
+    let latestVersion = [0, 0, 0];
+
+    while ((match = versionRegex.exec(text)) !== null) {
+        latestVersion = [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+    }
+
+    if (versionType === "major") {
+        latestVersion[0]++;
+        latestVersion[1] = 0;
+        latestVersion[2] = 0;
+    } else if (versionType === "minor") {
+        latestVersion[1]++;
+        latestVersion[2] = 0;
+    } else {
+        latestVersion[2]++;
+    }
+
+    const newVersion = `### ${latestVersion.join(".")} - ${new Date().toLocaleString()}`;
+    const newEntry = `\n${newVersion}\n\n#### ${changeType.toUpperCase()}: `;
+
+    editor.edit(editBuilder => {
+        editBuilder.insert(new vscode.Position(document.lineCount, 0), newEntry);
+    }).then(() => {
+        setTimeout(() => {
+            editor.edit(editBuilder => {
+                const lineRange = document.lineAt(lineNumber).range;
+                editBuilder.delete(lineRange);
+            });
+            hasRun = false; // Reset flag after execution
+        }, 100);
+    });
+}
+
 function deactivate() {}
 
 module.exports = {
-	activate,
-	deactivate
-}
+    activate,
+    deactivate
+};
