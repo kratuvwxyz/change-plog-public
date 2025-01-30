@@ -1,21 +1,26 @@
 const vscode = require('vscode');
 
+let hasRun = false; // Prevents multiple runs
+
 function activate(context) {
-    console.log("this is working");
-    let disposable = vscode.workspace.onDidChangeTextDocument(event => {
+    let disposable = vscode.workspace.onDidChangeTextDocument((event) => {
+        if (hasRun) return; // Prevents running again
+
         const editor = vscode.window.activeTextEditor;
         if (!editor) return;
 
-        const document = editor.document;
+        if (!event.contentChanges || event.contentChanges.length === 0) return;
+
+        const document = event.document;
         const position = editor.selection.active;
 
         if (position.line < 0) return;
 
         const line = document.lineAt(position.line).text.trim();
-
-        // Match command format: changelog-[major|minor|patch]-[added|changed|fixed|removed|secured]
-        const match = line.match(/^changelog-(major|minor|patch)-(added|changed|fixed|removed|secured)/);
+        
+        let match = line.match(/^changelog-(major|minor|patch)-(added|changed|fixed|removed|secured)/);
         if (match) {
+            hasRun = true; // Set flag to prevent multiple runs
             updateChangelog(editor, document, match[1], match[2], position.line);
         }
     });
@@ -33,7 +38,6 @@ function updateChangelog(editor, document, versionType, changeType, lineNumber) 
         latestVersion = [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
     }
 
-    // Increment version based on type
     if (versionType === "major") {
         latestVersion[0]++;
         latestVersion[1] = 0;
@@ -45,17 +49,19 @@ function updateChangelog(editor, document, versionType, changeType, lineNumber) 
         latestVersion[2]++;
     }
 
-    const newVersion = `## ${latestVersion.join(".")} - ${new Date().toLocaleString()}`;
-    const newEntry = `\n\n${newVersion}\n\n### ${changeType.toUpperCase()}: [Note user can add]\n\n---\n`;
+    const newVersion = `### ${latestVersion.join(".")} - ${new Date().toLocaleString()}`;
+    const newEntry = `\n${newVersion}\n\n#### ${changeType.toUpperCase()}: `;
 
     editor.edit(editBuilder => {
         editBuilder.insert(new vscode.Position(document.lineCount, 0), newEntry);
     }).then(() => {
-        // Remove the typed command after inserting the new entry
-        editor.edit(editBuilder => {
-            const lineRange = document.lineAt(lineNumber).range;
-            editBuilder.delete(lineRange);
-        });
+        setTimeout(() => {
+            editor.edit(editBuilder => {
+                const lineRange = document.lineAt(lineNumber).range;
+                editBuilder.delete(lineRange);
+            });
+            hasRun = false; // Reset flag after execution
+        }, 100);
     });
 }
 
