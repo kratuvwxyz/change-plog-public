@@ -9,13 +9,17 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "change-plog.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "extension.changelogHelper",
+        "title": "Trigger Changelog Helper"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
