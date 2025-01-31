@@ -4,7 +4,7 @@
   "description": "Create a changelog faster",
   "version": "1.0.0",
   "license": "MIT",
-  "publisher": "your-publisher-name",
+  "publisher": "desaigner",
   "repository": {
     "type": "git",
     "url": "https://github.com/kratuvwxyz/change-plog-public"

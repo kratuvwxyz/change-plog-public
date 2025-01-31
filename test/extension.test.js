@@ -6,7 +6,7 @@ suite('Extension Test Suite', () => {
     vscode.window.showInformationMessage('Start all tests.');
 
     test('Check if extension is activated', async () => {
-        const isActive = vscode.extensions.getExtension('your-publisher-name.change-plog').isActive;
+        const isActive = vscode.extensions.getExtension('desaigner.change-plog').isActive;
         assert.strictEqual(isActive, true);
     });
 
