@@ -3,6 +3,11 @@
   "displayName": "Change-PLOG",
   "description": "Create a changelog faster",
   "version": "0.0.1",
+  "publisher": "your-publisher-name",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kratuvwxyz/change-plog-public"
+  },
   "engines": {
     "vscode": "^1.96.0"
   },
