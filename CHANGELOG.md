@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "change-plog" extension will be documented in this file.
+Change-PLOG is a VS Code extension designed to help developers efficiently manage changelogs.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### 1.0.0 - 20250130 11:11
 
-## [Unreleased]
-
-- Initial release
+#### ADDED: Initial setup complete.

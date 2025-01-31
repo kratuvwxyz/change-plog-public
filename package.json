@@ -2,7 +2,7 @@
   "name": "change-plog",
   "displayName": "Change-PLOG",
   "description": "Create a changelog faster",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "your-publisher-name",
   "repository": {
     "type": "git",
