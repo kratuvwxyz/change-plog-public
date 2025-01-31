@@ -18,7 +18,7 @@ function activate(context) {
 
         const line = document.lineAt(position.line).text.trim();
         
-        let match = line.match(/^changelog-(major|minor|patch)-(added|changed|fixed|removed|secured)/);
+        let match = line.match(/^changelog-(major|minor|patch)-(added|changed|deprecated|fixed|removed|secured)/);
         if (match) {
             hasRun = true; // Set flag to prevent multiple runs
             updateChangelog(editor, document, match[1], match[2], position.line);
@@ -49,8 +49,8 @@ function updateChangelog(editor, document, versionType, changeType, lineNumber) 
         latestVersion[2]++;
     }
 
-    const newVersion = `### ${latestVersion.join(".")} - ${new Date().toLocaleString()}`;
-    const newEntry = `\n${newVersion}\n\n#### ${changeType.toUpperCase()}: `;
+    const newVersion = `### ${latestVersion.join(".")} - ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`;
+    const newEntry = `\n---\n\n${newVersion}\n\n#### ${changeType.toUpperCase()}: `;
 
     editor.edit(editBuilder => {
         editBuilder.insert(new vscode.Position(document.lineCount, 0), newEntry);
@@ -69,5 +69,6 @@ function deactivate() {}
 
 module.exports = {
     activate,
+    updateChangelog,
     deactivate
 };

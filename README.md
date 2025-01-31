@@ -1,65 +1,87 @@
-# change-plog README
+# Change-PLOG
 
-This is the README for your extension "change-plog". After writing up a brief description, we recommend including the following sections.
+## Overview
+Change-PLOG is a VS Code extension designed to help developers efficiently manage changelogs. By typing specific commands in Markdown files, it automatically generates version updates with properly formatted changelog entries.
 
 ## Features
+- Automatically detects changelog updates when typing commands.
+- Supports **major, minor, and patch** version increments.
+- Provides predefined categories for changelog updates:
+    - **Added** for new features.
+    - **Changed** for changes in existing functionality.
+    - **Deprecated** for soon-to-be removed features.
+    - **Removed** for now removed features.
+    - **Fixed** for any bug fixes.
+    - **Secured** in case of vulnerabilities.
+- Auto-inserts formatted changelog entries.
+- Prevents duplicate triggers with an execution flag.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Installation
+1. Open VS Code.
+2. Go to the **Extensions Marketplace** (`Ctrl+Shift+X`).
+3. Search for `Change-PLOG`.
+4. Click **Install**.
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
+## Usage
+### Automatic Changelog Entry Generation
+Type one of the following commands in a **Markdown** file:
+```sh
+changelog-major-added
+changelog-minor-removed
+changelog-minor-fixed
+```
+Once typed, the extension will automatically insert a formatted changelog entry:
+```markdown
 ---
 
-## Working with Markdown
+### 1.2.0 - 2025-01-11 11:11
 
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+#### FIXED: 
+```
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
+### Manual Trigger
+To manually insert a changelog entry:
+1. Open Command Palette (`Ctrl+Shift+P`).
+2. Search for **Trigger Changelog Helper**.
+3. Select and execute the command.
 
-## For more information
+## Configuration
+No additional configuration is required. The extension activates automatically when working in Markdown files.
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
-**Enjoy!**
+
+## **Contributing**
+
+We welcome your contributions to enhance ALPHANUM! Check out our [Contributing Guidelines](https://github.com/kratuvwxyz/CONTRIBUTE) to get started.
+
+
+
+## **License**
+
+This project is licensed under the [MIT License](https://github.com/kratuvwxyz/LICENSE).  
+© 2025 Kratu Desai, **DESAIGN LLC**
+
+
+
+## **How to Contact?**
+
+Whether you're a recruiter seeking top talent or a potential client with a project in mind, I'm eager to hear from you. Let's discuss your needs, aspirations, and how I can help bring your vision to life. From exploring job opportunities to collaborating on exciting projects, I'm here to engage in meaningful conversations.
+
+📧 Email: [mail@thegenius.one](mailto:mail@thegenius.one?subject=Message%20from%20Github&body=Thank%20you%20for%20your%20time%20and%20consideration.%0A%0A%0APlease%20fill%20out%20the%20following%20information:%0A%0A%20*%20Full%20Name:%20%0A%0A%20*%20Are%20you%20a%20recruiter?%20(Yes/No):%20%0A%0A%20*%20LinkedIn%20Profile%20(Optional):%20%0A%0A%20*%20Company%20Name:%20%0A%0A%20*%20Company%20Location:%20%0A%0A%20*%20Email%20Address:%20%0A%0A%20*%20Phone%20Number%20(Optional):%20%0A%0A%20*%20Position%20Title:%20%0A%0A%20*%20Company%20Website:%20%0A%0A%20*%20Message%20or%20Reason%20for%20Contact:%20%0A%0A%20*%20Preferred%20Method%20of%20Contact:%20%0A%0A%20*%20How%20did%20you%20hear%20about%20me?%20(Optional):%20%0A%0A%20*%20Any%20Additional%20Information:%20%0A%0A)
+
+
+
+
+## **About DESAIGN STUDIO**
+
+<img src="https://desaign.app/clients/cli/images/logo/desaign-logo-black.png" alt="DESAIGN LLC Logo" width="250px">
+
+Founded in 2011 by [Kratu Desai](https://desaigner.info), **DESAIGN STUDIO** is committed to innovation and excellence in design and technology. Check out our latest projects and see how we bring creativity to life at [desaign.studio](https://desaign.app).
+
+
+<span><a href="https://www.facebook.com/desaignstudio" target="_blank" style="text-decoration:none;"><img src="https://desaign.app/clients/cli/images/1x/029-facebook.png" alt="Facebook" width="25" /></a></span>&#160;
+<span><a href="https://www.twitter.com/desaignstudio" target="_blank" style="text-decoration:none;"><img src="https://desaign.app/clients/cli/images/1x/030-twitter.png" alt="Twitter" width="25" /></a></span>&#160;
+<span><a href="https://www.linkedin.com/company/desaignstudio" target="_blank" style="text-decoration:none;"><img src="https://desaign.app/clients/cli/images/1x/038-linkedin.png" alt="LinkedIn" width="25" /></a></span>&#160;
+<span><a href="https://desaigner.info" target="_blank" style="text-decoration:none;"><img src="https://desaign.app/clients/cli/images/1x/011-blog.png" alt="DESAIGNER Blog" width="25" /></a></span>
+
+© 2011-2025. All Rights Reserved.

@@ -1,7 +1,3 @@
-node_modules
-.vscode-test/
-*.vsix
-
 ##############################################################################################
 ##############################################################################################
 # LOCAL DEVELOPMENT
@@ -170,6 +166,8 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.vscode-test/
+*.vsix
 
 # yarn v2
 .yarn/cache
