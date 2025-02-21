@@ -1,40 +1,41 @@
 {
   "name": "change-plog",
   "displayName": "Change-PLOG",
-  "description": "Create a changelog faster",
-  "version": "1.0.0",
-  "license": "MIT",
+  "description": "Create a changelog faster for every new release",
+  "version": "1.1.0",
+  "license": "Check LICENSE file",
   "publisher": "desaigner",
+  "icon": "changeplog.png",
+  "galleryBanner": {
+    "color": "#003355",
+    "theme": "dark"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kratuvwxyz/change-plog-public"
   },
+  "homepage": "https://github.com/kratuvwxyz/change-plog-public/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/kratuvwxyz/change-plog-public/issues",
+    "email": "mail@thegenius.one"
+  },
   "engines": {
     "vscode": "^1.96.0"
   },
+  "keywords": [
+    "changelog",
+    "change log",
+    "log",
+    "change"
+  ],
   "categories": [
-    "Programming Languages",
-    "Extension Packs"
+    "Other"
   ],
   "activationEvents": [
-    "onLanguage:markdown"
+    "onLanguage:markdown",
+    "onCommand:ctrl+alt+m ctrl+alt+a"
   ],
   "main": "./extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.changelogHelper",
-        "title": "Trigger Changelog Helper"
-      }
-    ],
-    "keybindings": [
-      {
-        "command": "extension.changelogHelper",
-        "key": "ctrl+alt+c",
-        "when": "editorLangId == markdown"
-      }
-    ]
-  },
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
