@@ -1,7 +1,3 @@
-Below is an example of a **README.md** file for your VS Code extension:
-
----
-
 # Changelog Updater Extension
 
 The **Changelog Updater Extension** automates the process of updating your project's changelog directly from your source files. Simply type a specially formatted command in your editor, and the extension will handle the rest by incrementing version numbers, adding timestamps, and inserting a new entry into your changelog table.
