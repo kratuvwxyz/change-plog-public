@@ -2,7 +2,7 @@
   "name": "change-plog",
   "displayName": "Change-PLOG",
   "description": "Create a changelog faster for every new release",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "Check LICENSE file",
   "publisher": "desaigner",
   "icon": "changeplog.png",
