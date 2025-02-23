@@ -4,6 +4,7 @@
 
 | #     | Date                           | Type  | Change     |                                    |
 |-------|--------------------------------|-------|------------|------------------------------------|
+| 2.0.7 | 25&#8209;02&#8209;23 <br>12:40 | PATCH | FIXED      | README issue fixed |
 | 2.0.6 | 25&#8209;02&#8209;23 <br>10:13 | PATCH | CHANGED    | README updated based on new changes and functionality. |
 | 2.0.5 | 25&#8209;02&#8209;23 <br>08:17 | PATCH | CHANGED    | Updated package JSON according to the changes. |
 | 2.0.4 | 25&#8209;02&#8209;23 <br>07:48 | PATCH | FIXED      | Removed commands and keybindings that changed. |
