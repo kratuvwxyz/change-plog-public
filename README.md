@@ -1,53 +1,121 @@
-# Change-PLOG
+Below is an example of a **README.md** file for your VS Code extension:
 
-## Overview
-Change-PLOG is a VS Code extension designed to help developers efficiently manage changelogs. By typing specific commands in Markdown files, it automatically generates version updates with properly formatted changelog entries.
-
-## Features
-- Automatically detects changelog updates when typing commands.
-- Supports **major, minor, and patch** version increments.
-- Provides predefined categories for changelog updates:
-    - **Added** for new features.
-    - **Changed** for changes in existing functionality.
-    - **Deprecated** for soon-to-be removed features.
-    - **Removed** for now removed features.
-    - **Fixed** for any bug fixes.
-    - **Secured** in case of vulnerabilities.
-- Auto-inserts formatted changelog entries.
-- Prevents duplicate triggers with an execution flag.
-
-## Installation
-1. Open VS Code.
-2. Go to the **Extensions Marketplace** (`Ctrl+Shift+X`).
-3. Search for `Change-PLOG`.
-4. Click **Install**.
-
-## Usage
-### Automatic Changelog Entry Generation
-Type one of the following commands in a **Markdown** file:
-```sh
-changelog-major-added
-changelog-minor-removed
-changelog-minor-fixed
-```
-Once typed, the extension will automatically insert a formatted changelog entry:
-```markdown
 ---
 
-### 1.2.0 - 2025-01-11 11:11
+# Changelog Updater Extension
 
-#### FIXED: 
+The **Changelog Updater Extension** automates the process of updating your project's changelog directly from your source files. Simply type a specially formatted command in your editor, and the extension will handle the rest by incrementing version numbers, adding timestamps, and inserting a new entry into your changelog table.
+
+## Features
+
+- **Automatic Changelog Updates:**  
+  Listens for a specific command pattern in your code and automatically updates your changelog.
+
+- **Version Management:**  
+  Supports three types of updates:
+  - **Major (`ma`):** Increments the major version (e.g., `1.2.3` to `2.0.0`).
+  - **Minor (`mi`):** Increments the minor version (e.g., `1.2.3` to `1.3.0`).
+  - **Patch (`pa`):** Increments the patch version (e.g., `1.2.3` to `1.2.4`).
+
+- **Detailed Logging:**  
+  Each entry includes the new version number, the date and time (formatted as `YY‑MM‑DD <br> HH:MM`), and a description of the change.
+
+- **Seamless Workflow:**  
+  After processing, the original command line is automatically removed, keeping your code clean.
+
+## Command Format
+
+To trigger a changelog update, insert a command on its own line using the following format:
+
+```
+cl-<version-type>-<change-type>-<description>--
 ```
 
-### Manual Trigger
-To manually insert a changelog entry:
-1. Open Command Palette (`Ctrl+Shift+P`).
-2. Search for **Trigger Changelog Helper**.
-3. Select and execute the command.
+### Components:
 
-## Configuration
-No additional configuration is required. The extension activates automatically when working in Markdown files.
+- **version-type:**  
+  - `ma` — Major Update  
+  - `mi` — Minor Update  
+  - `pa` — Patch Update
 
+- **change-type:**  
+  Accepted values are: `added`, `changed`, `deprecated`, `fixed`, `removed`, `secured`.
+
+- **description:**  
+  A short summary of the change you’re making.
+
+### Examples:
+
+#### Example 1: Adding a New Security Layer (Minor Update)
+
+Command:
+```
+cl-mi-secured-Added new security layer on login.--
+```
+
+After this command is detected, the extension will:
+- Increment the version (e.g., from `1.0.0` to `1.1.0`).
+- Log the current date and time.
+- Insert a new entry into the changelog table.
+
+**Video Demonstration:**
+
+<video controls width="600" src="resources/SMM01.mp4"></video>  
+*If your markdown viewer does not support embedded videos, click [here](resources/SMM01.mp4) to watch the demonstration.*
+
+---
+
+#### Example 2: Fixing a Bug (Patch Update)
+
+Command:
+```
+cl-pa-fixed-Login issue and server error on Safari browser.--
+```
+
+After this command is detected, the extension will:
+- Increment the patch version (e.g., from `1.1.0` to `1.1.1`).
+- Log the current date and time.
+- Insert a new bug fix entry into the changelog table.
+
+**Video Demonstration:**
+
+<video controls width="600" src="resources/SMM02.mp4"></video>  
+*If your markdown viewer does not support embedded videos, click [here](resources/SMM02.mp4) to watch the demonstration.*
+
+---
+
+## How It Works
+
+1. **Detection:**  
+   The extension monitors your document for text changes. When it finds a line matching the command pattern, it triggers the update process.
+
+2. **Parsing:**  
+   The command is parsed into:
+   - **Version Type:** (`ma`, `mi`, or `pa`)
+   - **Change Type:** (`added`, `changed`, `deprecated`, `fixed`, `removed`, or `secured`)
+   - **Description:** A short explanation of the change.
+
+3. **Changelog Update:**  
+   - Retrieves the current version from your changelog (if available) and increments it appropriately.
+   - Generates a new table row containing the version, timestamp, update type, change type, and description.
+   - Inserts the new row into your changelog. If the changelog table or header does not exist, it creates them.
+
+4. **Cleanup:**  
+   After updating the changelog, the original command line is removed from your document.
+
+## Installation
+
+### Via the VS Code Marketplace
+
+1. Open VS Code.
+2. Go to the Extensions view by clicking on the Extensions icon in the Activity Bar.
+3. Search for "Changelog Updater Extension" and click **Install**.
+
+### Manual Installation
+
+1. Clone this repository.
+2. Open the project folder in VS Code.
+3. Press `F5` to launch a new VS Code window with the extension loaded.
 
 
 ## **Contributing**
